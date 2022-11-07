@@ -23,25 +23,13 @@ paths:
         By passing in the appropriate student metrics, you can determine if that student would be accepted or not
       parameters:
         - in: query
-          name: reason
-          description: reason for wanting to come to CMU
-          required: false
-          schema:
-            type: string
-        - in: query
           name: studyTime
           description: weekly study time
           schema:
             type: integer
             format: int32
             minimum: 1
-            maximum: 10
-        - in: query
-          name: activites
-          description: extra-curricular activities
-          schema:
-            type: boolean
-            format: binary
+            maximum: 4
         - in: query 
           name: Dalc
           description: workday alcohol consumption
@@ -50,22 +38,6 @@ paths:
             format: int32
             minimum: 1
             maximum: 5
-        - in: query
-          name: freetime
-          description: freetime after school
-          schema:
-            type: integer
-            format: int32
-            minimum: 1
-            maximum: 5
-        - in: query
-          name: absences
-          description: number of school absences
-          schema:
-            type: integer
-            format: int32
-            minimum: 0
-            maximum: 93
         - in: query
           name: G1
           description: first period grade
@@ -106,31 +78,15 @@ components:
     Student:
       type: object
       required:
-        - reason
-        - absences
         - studyTime
-        - activities
-        - freeTime
         - Dalc
         - G1
         - G2
         - G3
       properties:
-        reason:
-          type: string
-          example: "reputation"
-        absences:
-          type: number
-          example: 3
         studyTime:
           type: number
           example: 3
-        activities:
-          type: boolean
-          example: yes
-        freeTime:
-          type: number
-          example: 5
         Dalc:
           type: number
           example: 2
