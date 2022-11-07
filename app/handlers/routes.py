@@ -19,15 +19,19 @@ def configure_routes(app):
     @app.route('/student')
     def predict():
         #use entries from the query string here but could also use json
+        Dalc = request.args.get('Dalc')
         G1 = request.args.get('G1')
         G2 = request.args.get('G2')
-        Dalc = request.args.get('Dalc')
-        data = [[G1], [G2], [Dalc]]
+
+        # keep parameters in this exact order (order in which they were fitted)
         query_df = pd.DataFrame({
+            'Dalc': pd.Series(Dalc),
             'G1': pd.Series(G1),
             'G2': pd.Series(G2),
-            'Dalc': pd.Series(Dalc)
         })
-        query = pd.get_dummies(query_df)
-        prediction = clf.predict(query)
-        return jsonify(np.asscalar(prediction))
+        
+        print("query_df: ", query_df)
+
+        prediction = clf.predict(query_df)
+
+        return jsonify(np.ndarray.item(prediction))
