@@ -22,15 +22,15 @@ def configure_routes(app):
         Dalc = request.args.get('Dalc')
         G1 = request.args.get('G1')
         G2 = request.args.get('G2')
+        studytime = request.args.get('studytime')
 
         # keep parameters in this exact order (order in which they were fitted)
         query_df = pd.DataFrame({
             'Dalc': pd.Series(Dalc),
             'G1': pd.Series(G1),
             'G2': pd.Series(G2),
+            'studytime': pd.Series(studytime) 
         })
-        
-        print("query_df: ", query_df)
 
         prediction = clf.predict(query_df)
 

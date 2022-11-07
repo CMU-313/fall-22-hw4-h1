@@ -26,9 +26,10 @@ def test_student_route():
     Dalc = 5
     G1 = 3
     G2 = 1
+    studytime = 1
 
     # keep parameters in this exact order (order in which they were fitted)
-    url = f'''/student?Dalc={Dalc}&G1={G1}&G2={G2}'''
+    url = f'''/student?Dalc={Dalc}&G1={G1}&G2={G2}&studytime={studytime}'''
 
     response = client.get(url)
 
@@ -42,8 +43,9 @@ def test_student_route():
     Dalc = 1
     G1 = 20
     G2 = 20
+    studytime = 3
 
-    url = f'''/student?Dalc={Dalc}&G1={G1}&G2={G2}'''
+    url = f'''/student?Dalc={Dalc}&G1={G1}&G2={G2}&studytime={studytime}'''
 
     response = client.get(url)
 
@@ -56,14 +58,15 @@ def test_student_route():
     Dalc = 5
     G1 = 20
     G2 = 20
+    studytime = 1
 
-    url = f'''/student?Dalc={Dalc}&G1={G1}&G2={G2}'''
+    url = f'''/student?Dalc={Dalc}&G1={G1}&G2={G2}&studytime={studytime}'''
 
     response = client.get(url)
 
     assert response.status_code == 200
 
-    assert int(response.get_data()) == 0
+    assert int(response.get_data()) == 1
 
 
 
