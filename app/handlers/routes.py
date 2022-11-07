@@ -13,20 +13,20 @@ def configure_routes(app):
 
     @app.route('/')
     def hello():
-        return "try the predict route it is great!"
+        return "try the student route it is great!"
 
 
-    @app.route('/predict')
+    @app.route('/student')
     def predict():
         #use entries from the query string here but could also use json
-        age = request.args.get('age')
-        absences = request.args.get('absences')
-        health = request.args.get('health')
-        data = [[age], [health], [absences]]
+        G1 = request.args.get('G1')
+        G2 = request.args.get('G2')
+        Dalc = request.args.get('Dalc')
+        data = [[G1], [G2], [Dalc]]
         query_df = pd.DataFrame({
-            'age': pd.Series(age),
-            'health': pd.Series(health),
-            'absences': pd.Series(absences)
+            'G1': pd.Series(G1),
+            'G2': pd.Series(G2),
+            'Dalc': pd.Series(Dalc)
         })
         query = pd.get_dummies(query_df)
         prediction = clf.predict(query)
