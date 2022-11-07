@@ -1,0 +1,145 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: REST API for CMU Graduate Admissions System Candidate Evaluation Microservice
+    url: https://virtserver.swaggerhub.com/CZSANBOR/HW4/1.0.0
+info:
+  description: REST API for CMU Graduate Admissions System Candidate Evaluation Microservice 
+  version: "1.0.0"
+  title: CMU Graduate Candidate Evaluation API
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: Admissions Officers
+    description: Member of Student Admission Committee
+paths:
+  /student:
+    get:
+      tags:
+        - Admissions Officers
+      summary: determine student admission based on metrics
+      description: |
+        By passing in the appropriate student metrics, you can determine if that student would be accepted or not
+      parameters:
+        - in: query
+          name: reason
+          description: reason for wanting to come to CMU
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: studyTime
+          description: weekly study time
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 10
+        - in: query
+          name: activites
+          description: extra-curricular activities
+          schema:
+            type: boolean
+            format: binary
+        - in: query 
+          name: Dalc
+          description: workday alcohol consumption
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 5
+        - in: query
+          name: freetime
+          description: freetime after school
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 5
+        - in: query
+          name: absences
+          description: number of school absences
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 93
+        - in: query
+          name: G1
+          description: first period grade
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 20
+        - in: query
+          name: G2
+          description: second period grade
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 20
+        - in: query
+          name: G3
+          description: last period grade
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 20
+      responses:
+        '200':
+          description: boolean for whether or not the student should be accepted
+          content:
+            json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+        '400':
+          description: bad input parameter
+components:
+  schemas:
+    Student:
+      type: object
+      required:
+        - reason
+        - absences
+        - studyTime
+        - activities
+        - freeTime
+        - Dalc
+        - G1
+        - G2
+        - G3
+      properties:
+        reason:
+          type: string
+          example: "reputation"
+        absences:
+          type: number
+          example: 3
+        studyTime:
+          type: number
+          example: 3
+        activities:
+          type: boolean
+          example: yes
+        freeTime:
+          type: number
+          example: 5
+        Dalc:
+          type: number
+          example: 2
+        G1:
+          type: number
+          example: 5
+        G2:
+          type: number
+          example: 10
+        G3:
+          type: number
+          example: 15
