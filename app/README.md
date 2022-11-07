@@ -1,1 +1,3 @@
-Test
+We utilized 7 metrics through the entire process: G1, G2, G3, activites, studyTime, absences, dalc
+We created an algorithm for deciding whether students would be accepted into the college or not. The algorithm utilized 4 of the 7 metrics: G3, activities, studyTime, absences. We then dropped all 4 of those metrics from the table so that we were left with the remaining three: G1, G2, and dalc. We trained and built the model based on those three and got an F1 score of .757575. The F1 score from the original model was .5, and considering an F1 score closer to 1 indicates better predictors, our new F1 score proved our improved model was effective. The F1 score indicated that our first 4 metrics (G3, activites, studyTime, absences) and our remaining 3 metrics (G1, G2, dalc) had similar results in predicting which students would be accepted into the college.
+
